@@ -5,13 +5,14 @@ import moment from "moment";
 import { Link } from "@reach/router";
 
 import { fetchLines } from "../utils/api";
+import { Loader } from "./Loader";
 
 export default class Table extends Component {
 	dataSub;
 
 	state = {
-		lines: [],
-		lastUpdated: new Date()
+		lines: null,
+		lastUpdated: new Date(),
 	};
 
 	componentDidMount() {
@@ -27,6 +28,8 @@ export default class Table extends Component {
 	}
 
 	render() {
+		if (!this.state.lines) return <Loader />;
+
 		return (
 			<div>
 				<h5>
@@ -42,7 +45,7 @@ export default class Table extends Component {
 						</tr>
 					</thead>
 					<tbody>
-						{this.state.lines.map(i => {
+						{this.state.lines.map((i) => {
 							return (
 								<tr key={i.id}>
 									<th scope="row">{i.name}</th>

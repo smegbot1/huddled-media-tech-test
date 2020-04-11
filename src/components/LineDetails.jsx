@@ -5,14 +5,14 @@ import { switchMap } from "rxjs/operators";
 import { Link } from "@reach/router";
 
 import { fetchLine } from "../utils/api";
+import { Loader } from "./Loader";
 
 export default class LineDetails extends Component {
 	dataSub;
 
 	state = {
 		line: null,
-		reason: "",
-		lastUpdated: new Date()
+		lastUpdated: new Date(),
 	};
 
 	componentDidMount() {
@@ -21,7 +21,7 @@ export default class LineDetails extends Component {
 			.subscribe(({ data }) => {
 				this.setState({
 					line: data[0],
-					lastUpdated: new Date()
+					lastUpdated: new Date(),
 				});
 			});
 	}
@@ -31,7 +31,7 @@ export default class LineDetails extends Component {
 	}
 
 	render() {
-		if (!this.state.line) return <p>Loading</p>;
+		if (!this.state.line) return <Loader />;
 
 		return (
 			<div>
