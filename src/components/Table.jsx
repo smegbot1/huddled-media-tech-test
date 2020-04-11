@@ -27,26 +27,25 @@ export default class Table extends Component {
 	}
 
 	render() {
-		// console.log(this.state.lines);
 		return (
 			<div>
 				<h5>
 					Updated on{" "}
 					{moment(this.state.lastUpdated).format("DD MMM YYYY -- HH:mm:ss")}
 				</h5>
-				<table className="table table-bordered table-dark">
+				<table className="table table-bordered">
 					<thead>
 						<tr>
-							<th>Line</th>
-							<th>Status</th>
-							<th></th>
+							<th scope="col">Line</th>
+							<th scope="col">Status</th>
+							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody>
 						{this.state.lines.map(i => {
 							return (
 								<tr key={i.id}>
-									<td>{i.name}</td>
+									<th scope="row">{i.name}</th>
 									<td>
 										{i.lineStatuses.map((s, i) => (
 											<p key={s.statusSeverityDescription + i}>
