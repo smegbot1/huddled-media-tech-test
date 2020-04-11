@@ -10,7 +10,7 @@ export default class LineDetails extends Component {
 	dataSub;
 
 	state = {
-		line: {},
+		line: null,
 		reason: "",
 		lastUpdated: new Date()
 	};
@@ -19,10 +19,8 @@ export default class LineDetails extends Component {
 		this.dataSub = timer(0, 60000)
 			.pipe(switchMap(() => fetchLine(this.props.lineId)))
 			.subscribe(({ data }) => {
-				// console.log(data[0])
 				this.setState({
 					line: data[0],
-					reason: data[0].lineStatuses[0].reason,
 					lastUpdated: new Date()
 				});
 			});
@@ -33,14 +31,16 @@ export default class LineDetails extends Component {
 	}
 
 	render() {
+		if (!this.state.line) return <p>Loading</p>;
+
 		return (
 			<div>
 				<h5>
 					Updated on{" "}
-					{moment(this.state.lastUpdated).format("DD MMM YYYY -- HH:mm:ss")}
+					{moment(this.state.lastUpdated).format("DD MMM YYYY HH:mm:ss")}
 				</h5>
 				<h3>{this.state.line.name}</h3>
-				<p>{this.state.reason}</p>
+				<p>{this.state.line.lineStatuses[0].reason}</p>
 				<Link to={"/"}>
 					<button type="button" className="btn btn-light">
 						Back
