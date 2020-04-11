@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { timer } from "rxjs";
-import moment from "moment";
 import { switchMap } from "rxjs/operators";
 import { Link } from "@reach/router";
 
 import { fetchLine } from "../utils/api";
 import { Loader } from "./Loader";
+import { UpdatedOn } from "./UpdatedOn";
 
 export default class LineDetails extends Component {
 	dataSub;
@@ -35,10 +35,7 @@ export default class LineDetails extends Component {
 
 		return (
 			<div>
-				<h5>
-					Updated on{" "}
-					{moment(this.state.lastUpdated).format("DD MMM YYYY HH:mm:ss")}
-				</h5>
+				<UpdatedOn lastUpdated={this.state.lastUpdated} />
 				<h3>{this.state.line.name}</h3>
 				<p>{this.state.line.lineStatuses[0].reason}</p>
 				<Link to={"/"}>

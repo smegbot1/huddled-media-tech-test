@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { timer } from "rxjs";
 import { switchMap } from "rxjs/operators";
-import moment from "moment";
 import { Link } from "@reach/router";
 
 import { fetchLines } from "../utils/api";
 import { Loader } from "./Loader";
+import { UpdatedOn } from "./UpdatedOn";
 
 export default class Table extends Component {
 	dataSub;
@@ -32,10 +32,7 @@ export default class Table extends Component {
 
 		return (
 			<div>
-				<h5>
-					Updated on{" "}
-					{moment(this.state.lastUpdated).format("DD MMM YYYY -- HH:mm:ss")}
-				</h5>
+				<UpdatedOn lastUpdated={this.state.lastUpdated} />
 				<table className="table table-bordered">
 					<thead>
 						<tr>
