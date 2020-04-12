@@ -16,6 +16,7 @@ export default class LineDetails extends Component {
 		loading: true,
 		line: null,
 		lastUpdated: new Date(),
+		error: false,
 	};
 
 	componentDidMount() {
@@ -43,12 +44,15 @@ export default class LineDetails extends Component {
 					);
 				})
 			)
-			.subscribe(({ data }) => {
-				this.setState({
-					line: data[0],
-					lastUpdated: new Date(),
-				});
-			});
+			.subscribe(
+				({ data }) => {
+					this.setState({
+						line: data[0],
+						lastUpdated: new Date(),
+					});
+				},
+				() => this.setState({ error: true })
+			);
 	};
 
 	render() {
@@ -57,21 +61,37 @@ export default class LineDetails extends Component {
 				<UpdatedOn lastUpdated={this.state.lastUpdated} />
 				<div className="position-relative">
 					<div className="card text-dark rounded">
-						<div className="card-body">
-							<h3 className="card-title">
-								{this.state.line && this.state.line.name}
-							</h3>
-							<p className="card-text">
-								{this.state.line && this.state.line.lineStatuses[0].reason}
-							</p>
-							<Link to={"/"}>
-								<p className="card-link">&#8249; Back</p>
-							</Link>
-						</div>
+						{this.state.error ? (
+							<div className="card-body">
+								<h3 className="card-title">Line not found</h3>
+								<Link to={"/"}>
+									<p className="card-link">&#8249; Back</p>
+								</Link>
+							</div>
+						) : (
+							<div className="card-body">
+								<h3 className="card-title">
+									{this.state.line && this.state.line.name}
+								</h3>
+								<p className="card-text">
+									{(this.state.line &&
+										this.state.line.lineStatuses[0].reason) ||
+										"Services running as normal."}
+								</p>
+								<Link to={"/"}>
+									<p className="card-link">&#8249; Back</p>
+								</Link>
+							</div>
+						)}
 					</div>
 					{this.state.line ? (
 						<div className="bg-white p-4 rounded mt-2 border">
 							<img
+								style={{
+									height: 220,
+									objectFit: "contain",
+									objectPosition: "center center",
+								}}
 								src={`/assets/images/${this.state.line.id}.png`}
 								className="w-100"
 								alt={this.state.line.name}
@@ -94,8 +114,15 @@ export default class LineDetails extends Component {
 					) : null}
 				</div>
 				<hr />
-				<h3>Other Stations</h3>
-				<Table filterId={this.state.line && this.state.line.id} />
+				<h3>Other Lines</h3>
+				<Table
+					filterId={this.state.line && this.state.line.id}
+					loaded={() =>
+						setTimeout(() =>
+							window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+						)
+					}
+				/>
 			</div>
 		);
 	}

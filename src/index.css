@@ -52,20 +52,55 @@ main {
 
 .bg-container {
   background: #fafafa;
-  /* background-image: url('/assets/images/map-bg.png');
-  background-size: cover;
-  background-position: center center;
-  position: relative;
-  min-height: 100vh; */
 }
 
-/* .bg-container:after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.95);
-} */
+.line-name {
+  display: inline;
+  padding: 5px 10px;
+  border-radius: 9999px;
+  color: #fff;
+}
+
+#bakerloo {
+  background: #7e3900;
+}
+
+#circle {
+  background: #ffe700;
+  color: #08218c;
+}
+
+#central {
+  background: #ff3108;
+}
+
+#district {
+  background: #007b39;
+}
+
+#hammersmith-city {
+  background: #f76b9c;
+}
+
+#jubilee {
+  background:#737373;
+}
+
+#metropolitan {
+  background:#630039;
+}
+
+#northern {
+  background:#000000;
+}
+
+#piccadilly {
+  background:#10298c;
+}
+
+#victoria {
+  background:#1884bd;
+}
+#waterloo-city {
+  background:#7bcea5;
+}

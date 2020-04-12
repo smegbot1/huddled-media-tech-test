@@ -29,6 +29,8 @@ export default class Table extends Component {
 					return item.id !== this.props.filterId;
 				}),
 			});
+
+			if (this.props.loaded) this.props.loaded();
 		}
 	}
 
@@ -64,19 +66,17 @@ export default class Table extends Component {
 					className="table text-dark bg-white table-bordered mb-0"
 					id="table"
 				>
-					<thead>
-						<tr>
-							<th>Line</th>
-							<th>Status</th>
-							<th></th>
-						</tr>
-					</thead>
 					<tbody>
 						{this.state.lines.map((i) => {
 							return (
 								<tr key={i.id}>
 									<td>
-										<p className="font-weight-bold mb-0">{i.name}</p>
+										<p
+											className="font-weight-bold mb-0 line-name"
+											id={`${i.id}`}
+										>
+											{i.name}
+										</p>
 									</td>
 									<td>
 										{i.lineStatuses.map((s, index) => {
