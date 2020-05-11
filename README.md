@@ -1,6 +1,6 @@
 # Tube Tracker Widget
 
-Welcome to my Huddled Media tech test repo, in which I built a small React app to use Transport for London's public api. The purpose is to display all statuses of all tube lines on every refresh (or automatically every 60 seconds) of the widget, with the ability to read the details of the status for a given line if required.
+Welcome to my London Underground service tracker app, a small React app using Transport for London's public api. The purpose is to display all statuses of all tube lines on every refresh (or automatically every 60 seconds) of the widget, with the ability to read the details of the status for a given line if required.
 
 ## How to run the app
 To install the app locally, you will need npm version 6.12.1 and Node version 10.15.2 (or higher respectively) on your machine. When installing Node, npm is installed automatically. Checking to see if either is installed, copy and enter the following command into your terminal:
@@ -29,6 +29,6 @@ npm run start
 > NOTE: It is usually a good idea to have your desired browser already open before the last command. Should you run into any problems with 'npm start', try opening your browser first and then running the command.
 
 Hey presto, you're tube tracker is giving you the latest line statuses!
-Once you're done with the app, hit "Ctrl + C" in the terminal from before. Otherwise, the file containing the app is safe to delete whenever you like.
+Once you're done with the app, hit "Ctrl + C" in the terminal to quit the process. Otherwise, the file containing the app is safe to delete whenever you like after you're done.
 
 Thanks for checking this out :)
